@@ -33,8 +33,22 @@ function login() {
 			return;
 		}
 		user = JSON.parse(this.responseText);
+		refreshUserData();
+		refreshSolicitation();
+	});
+}
 
-		displayuser();
+function logout() {
+	get("user/logout.php", function () 
+	{
+		if (this.readyState != 4) return;
+		if (this.status != 200)
+		{
+			errorHandler(JSON.parse(this.responseText).errorMessage);
+			return;
+		}
+		user = null;
+		refreshUserData();
 		refreshSolicitation();
 	});
 }
@@ -81,11 +95,20 @@ function createJSONObjectDOM (jsonObject, callback) {
 	return objectDOM;
 }
 
-function displayuser () 
+function refreshUserData () 
 {
-	document.querySelector(".user #email").innerHTML = user.email;
-	document.querySelector(".user #name").innerHTML = user.name;
-	document.querySelector(".user #founds").innerHTML = user.available_founds;
+	if (user != null) 
+	{ 
+		document.querySelector(".user #email").innerHTML = user.email;
+		document.querySelector(".user #name").innerHTML = user.name;
+		document.querySelector(".user #founds").innerHTML = user.available_founds;
+	}
+	else
+	{
+		document.querySelector(".user #email").innerHTML = "";
+		document.querySelector(".user #name").innerHTML = "";
+		document.querySelector(".user #founds").innerHTML = "";		
+	}
 }
 
 function refreshSolicitation ()
@@ -96,6 +119,13 @@ function refreshSolicitation ()
 
 function refreshSolicitedItems() 
 {
+	document.querySelector(".solicited").innerHTML = "";
+	if (user == null) {
+		document.querySelector(".solicitation #total").innerHTML = "";
+		document.querySelector(".solicitation #remaining").innerHTML = "";
+		return;
+	}
+
 	let total = 0;
 	user.solicited.sort(function(base, comparison) { return base.id - comparison.id });
 	let table = createJSONArrayDOM(user.solicited, function (objectDOM, object)
@@ -146,7 +176,6 @@ function refreshSolicitedItems()
 
 		objectDOM.appendChild(commands);
 	});
-	document.querySelector(".solicited").innerHTML = "";
 	document.querySelector(".solicited").appendChild(table);
 
 	document.querySelector(".solicitation #total").innerHTML = total;
@@ -155,6 +184,9 @@ function refreshSolicitedItems()
 
 function refreshNotsolicitedItems() 
 {
+	document.querySelector(".not-solicited").innerHTML = "";
+	if (user == null) return;
+
 	user.not_solicited.sort(function(base, comparison) { return base.id - comparison.id });
 	let table = createJSONArrayDOM(user.not_solicited, function (objectDOM, object)
 	{
@@ -173,6 +205,5 @@ function refreshNotsolicitedItems()
 
 		objectDOM.appendChild(solicitButton);
 	});
-	document.querySelector(".not-solicited").innerHTML = "";
 	document.querySelector(".not-solicited").appendChild(table);
 }
