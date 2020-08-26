@@ -1,0 +1,320 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa&family=Fredoka+One&family=Work+Sans&display=swap");
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+  position: relative;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  min-height: 100vh;
+  width: 100vw;
+  max-width: 100%;
+}
+
+.view {
+  position: fixed;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-height: 100%;
+  min-width: 100%;
+  padding: 12px;
+  transition: all 1s ease;
+  z-index: 100;
+}
+.view.hidden {
+  top: -100%;
+  bottom: 100%;
+}
+
+.section {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.section h1 {
+  width: 100%;
+  text-align: center;
+  color: #181818;
+  padding: 12px;
+  font-family: "Comfortaa", cursive;
+}
+
+.container {
+  width: 100%;
+  padding: 12px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.img {
+  margin: 8px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+.img img {
+  max-width: 100%;
+  height: auto;
+}
+
+.field {
+  padding: 6px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  align-items: stretch;
+}
+.field.embedded {
+  flex-wrap: nowrap;
+}
+.field.embedded:hover .label {
+  background-color: #f86f2dff;
+}
+.field.embedded:hover .label, .field.embedded:hover .value {
+  border-color: #f86f2dff;
+}
+.field.embedded .label, .field.embedded .value {
+  flex-basis: 50%;
+  font-size: 12pt;
+  border: 1px solid #181818;
+  vertical-align: middle;
+}
+.field.embedded .label {
+  border-radius: 3px 0 0 3px;
+  background-color: #181818;
+  color: #ffffff;
+}
+.field.embedded .value {
+  border-radius: 0 3px 3px 0;
+}
+.field .label, .field .value {
+  width: 100%;
+  padding: 6px;
+  font-family: "Work Sans", sans-serif;
+  transition: all 0.7s ease;
+  color: #181818;
+}
+.field .label {
+  font-size: 14pt;
+}
+.field .value {
+  font-size: 12pt;
+  border-radius: 3px;
+}
+.field input.value {
+  border: 1px solid white;
+}
+
+.button {
+  margin: 6px;
+  padding: 6px 12px;
+  font-family: "Work Sans", sans-serif;
+  transition: background 0.7s ease, color 0.5s ease, transform 0.4s ease, border 0.7s ease;
+  background-color: #181818;
+  border-radius: 3px;
+  border: none;
+  font-size: 12pt;
+  color: #ffffff;
+  cursor: pointer;
+}
+.button:hover {
+  transform: scale(1.05);
+}
+.button:active {
+  transform: scale(0.9);
+  transition: all 0s;
+}
+
+.hero-header {
+  width: 100%;
+  background-color: #f86f2dff;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 0;
+}
+.hero-header img {
+  max-width: 100%;
+  height: auto;
+}
+
+.w-1 {
+  width: 8.3333333333%;
+}
+
+.w-2 {
+  width: 16.6666666667%;
+}
+
+.w-3 {
+  width: 25%;
+}
+
+.w-4 {
+  width: 33.3333333333%;
+}
+
+.w-5 {
+  width: 41.6666666667%;
+}
+
+.w-6 {
+  width: 50%;
+}
+
+.w-7 {
+  width: 58.3333333333%;
+}
+
+.w-8 {
+  width: 66.6666666667%;
+}
+
+.w-9 {
+  width: 75%;
+}
+
+.w-10 {
+  width: 83.3333333333%;
+}
+
+.w-11 {
+  width: 91.6666666667%;
+}
+
+.w-12 {
+  width: 100%;
+}
+
+.object-table {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  width: 100%;
+}
+.object-table .object {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  margin: 12px;
+  border-top: 1px solid #f86f2dff;
+  border-left: 1px solid #f86f2dff;
+  border-right: 1px solid #f86f2dff;
+  width: 100%;
+}
+.object-table .object .object-property:first-child .object-property-label {
+  border-radius: 3px 0 0 0;
+}
+.object-table .object .object-property:first-child .object-property-value {
+  border-radius: 0 3px 0 0;
+}
+.object-table .object .object-property:last-child .object-property-label {
+  border-radius: 0 0 0 3px;
+}
+.object-table .object .object-property:last-child .object-property-value {
+  border-radius: 0 0 3px 0;
+}
+.object-table .object .object-property {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+}
+.object-table .object .object-property * {
+  padding: 4px;
+  font-family: "Work Sans", sans-serif;
+  padding-left: 10px;
+}
+.object-table .object .object-property .object-property-label {
+  background-color: #f86f2dff;
+  border-bottom: 1px solid white;
+  color: #ffffff;
+  flex-basis: 30%;
+}
+.object-table .object .object-property .object-property-value {
+  flex-basis: 70%;
+  border-bottom: 1px solid #f86f2dff;
+  color: #181818;
+}
+.object-table .object .object-property-commands {
+  padding: 5px 5px 5px 20px;
+  display: inline-flex;
+  flex-flow: row nowrap;
+}
+.object-table .object .object-property-commands .command-button {
+  height: 20px;
+  min-width: 20px;
+  border: none;
+  background-color: #181818;
+  color: #ffffff;
+  font-size: 12pt;
+  border-radius: 25px;
+  margin-right: 5px;
+  padding: 0;
+  transition: all 0.7s ease;
+}
+.object-table .object .object-property-commands .command-button:hover {
+  transform: scale(1.2);
+}
+.object-table .object .object-property-commands .command-button:active {
+  transform: scale(0.9);
+  transition: all 0s;
+}
+.object-table .object .object-commands {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  justify-content: stretch;
+  width: 100%;
+}
+.object-table .object .object-commands .command-button {
+  background-color: #181818;
+  color: #ffffff;
+  flex-basis: 100%;
+  padding: 6px;
+  border: none;
+}
+.object-table .object .object-commands .command-button:first-child {
+  border-bottom-left-radius: 3px;
+}
+.object-table .object .object-commands .command-button:last-child {
+  border-bottom-right-radius: 3px;
+}
+
+#login-view {
+  z-index: 100;
+  background-color: #f86f2dff;
+}
+
+/*# sourceMappingURL=solicit.css.map */

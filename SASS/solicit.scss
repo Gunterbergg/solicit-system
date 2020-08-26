@@ -1,0 +1,321 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&family=Fredoka+One&family=Work+Sans&display=swap');
+
+$primary-color: #f86f2dff;
+$secondary-color: #ffffff;
+$complement-color: #181818;
+$complement-contrast-color: #ffffff;
+$text-color: #181818;
+
+
+$title-font: 'Fredoka One', cursive;
+$subtitle-font: 'Comfortaa', cursive;
+$text-font: 'Work Sans', sans-serif;
+
+$defaut-distance: 12px;
+$default-radius: 3px;
+
+//CSS reset 
+html {
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+	position: relative;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+@mixin flexbox($flow) {
+	display: flex;
+	flex-flow: $flow;
+	justify-content: center;
+	align-items: center;
+}
+
+
+//Structures
+body {
+	min-height: 100vh;
+	width: 100vw;
+	max-width:100%;
+}
+
+.view {
+	position: fixed;
+	@include flexbox(column nowrap);
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	min-height: 100%;
+	min-width: 100%;
+	padding: $defaut-distance;
+	transition: all 1s ease;
+	z-index: 100;
+	
+	&.hidden {
+		top: -100%;
+		bottom: 100%;
+	}
+
+}
+
+
+.section {
+	@include flexbox(column nowrap);
+	width: 100%;
+
+	h1 {
+		width: 100%;
+		text-align: center;
+		color: $text-color;
+		padding: $defaut-distance;
+		font-family: $subtitle-font;
+	}
+
+}
+
+.container {
+	width: 100%;
+	padding: $defaut-distance;
+	@include flexbox(row wrap);
+}
+
+.img {
+	margin: 8px;
+	@include flexbox(row wrap);
+
+	img {
+		max-width: 100%;
+		height: auto;
+	}
+}
+
+.field {
+	padding: #{$defaut-distance / 2};
+	@include flexbox(row wrap);
+	align-items: stretch;
+
+	&.embedded {
+		flex-wrap: nowrap;
+
+		&:hover {
+			.label {
+				background-color: $primary-color;
+			}
+
+			.label, .value {
+				border-color: $primary-color;
+			}
+
+		}
+
+		.label, .value {
+			flex-basis: 50%;
+			font-size: 12pt;
+			border: 1px solid $complement-color;
+			vertical-align: middle;
+		}
+
+		.label {
+			border-radius: $default-radius 0 0 $default-radius;
+			background-color: $complement-color;
+			color: $complement-contrast-color;
+		}
+
+		.value {
+			border-radius: 0 $default-radius $default-radius 0;
+		}
+	}
+
+	.label, .value {
+		width: 100%;
+		padding: #{$defaut-distance / 2};
+		font-family: $text-font;
+		transition: all 0.7s ease; 
+		color: $text-color;
+	}
+
+	.label {
+		font-size: 14pt;	
+	}
+
+	.value {
+		font-size: 12pt;
+		border-radius: $default-radius;
+	}
+
+	input.value {
+		border: 1px solid lighten($primary-color, 50%);
+	}
+}
+
+.button {
+	margin: #{$defaut-distance / 2};
+	padding: #{$defaut-distance / 2} $defaut-distance;
+	font-family: $text-font;
+	transition: background 0.7s ease, color 0.5s ease, transform 0.4s ease, border 0.7s ease;
+	background-color: $complement-color;
+	border-radius: $default-radius;
+	border: none;
+	font-size: 12pt;
+	color: $complement-contrast-color;
+	cursor: pointer;
+
+	&:hover {
+		transform: scale(1.05);
+	}
+
+	&:active {
+		transform: scale(0.9);
+		transition: all 0s;
+	}
+}
+
+.hero-header {
+	width: 100%;
+	background-color: $primary-color;
+	@include flexbox(row nowrap);
+	padding: $defaut-distance 0;
+
+	img {
+		max-width: 100%;
+		height: auto;
+	}
+}
+
+@for $i from 1 through 12 {
+	.w-#{$i} {
+		width: #{($i/12) * 100%};
+	}
+}
+
+
+.object-table {
+	@include flexbox(column nowrap);
+	padding: $defaut-distance;
+	width: 100%;
+
+	.object {
+		@include flexbox(column wrap);
+		border-radius: $default-radius;
+		margin: $defaut-distance; 
+		border-top: 1px solid $primary-color;
+		border-left: 1px solid $primary-color;
+		border-right: 1px solid $primary-color;
+		width: 100%;
+
+		.object-property:first-child {
+
+			.object-property-label {
+				border-radius: $default-radius 0 0 0;
+			}
+
+			.object-property-value {
+				border-radius: 0 $default-radius 0 0;
+			}
+		}
+
+		.object-property:last-child {
+
+			.object-property-label {
+				border-radius: 0 0 0 $default-radius;
+			}
+
+			.object-property-value {
+				border-radius: 0 0 $default-radius 0;
+			}
+		}
+
+		.object-property {
+			width: 100%;
+			display: flex;
+			flex-flow: row nowrap;
+
+			* {
+				padding: 4px;
+				font-family: $text-font;
+				padding-left: 10px;
+			}
+
+			.object-property-label {
+				background-color: $primary-color;
+				border-bottom: 1px solid lighten($primary-color, 50%);
+				color: $secondary-color;
+				flex-basis: 30%;
+			}
+
+			.object-property-value {
+				flex-basis: 70%;
+				border-bottom: 1px solid $primary-color;
+				color: $text-color;
+			}
+		}
+
+		.object-property-commands {
+			padding: 5px 5px 5px 20px;
+			display: inline-flex;
+			flex-flow: row nowrap;
+
+			.command-button {
+				height: 20px;
+				min-width: 20px;
+				border: none;
+				background-color: $complement-color;
+				color: $complement-contrast-color;
+				font-size: 12pt;
+				border-radius: 25px;
+				margin-right: 5px;
+				padding:0;
+				transition: all 0.7s ease;
+				
+				&:hover {
+					transform: scale(1.2);
+				}
+
+				&:active {
+					transform: scale(0.9);
+					transition: all 0s;
+				}
+			}
+		}
+
+		.object-commands {
+			@include flexbox(row nowrap);
+			justify-content: stretch;
+			width: 100%;
+
+			.command-button {
+				background-color: $complement-color;
+				color: $complement-contrast-color;
+				flex-basis: 100%;
+				padding: #{$defaut-distance / 2};
+				border: none;
+
+				&:first-child {
+					border-bottom-left-radius: $default-radius;
+				}
+
+				&:last-child {
+					border-bottom-right-radius: $default-radius;
+				}
+
+			}
+		}
+	}
+}
+
+#login-view {
+	z-index: 100;
+	background-color: $primary-color;
+}
